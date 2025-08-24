@@ -1,0 +1,46 @@
+/* tema preto*/
+$TextBraco: rgb(255,255,255);
+$GroundBreto:(#001CF0);
+/*tema braco*/
+$GroundBraco: (#00F0DF);
+$textBreto:rgb(0,0,0);
+
+.menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  background-color: #0b3d91; /* Um azul escuro, como o da NASA */
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.menu-button:hover, .menu-button:focus {
+  background-color: #1153c2;
+}
+
+.menu-list {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  border-radius: 4px;
+}
+
+.menu-list li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-list li a:hover {background-color: #ddd;}
