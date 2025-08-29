@@ -1,0 +1,55 @@
+// Inspirado no tema do menu, com cores escuras e texto claro
+$text-color: rgb(240, 240, 240);
+$background-color: #1a1a2e; // Um azul bem escuro, quase preto
+$title-color: #e94560; // Um destaque para o título
+$border-color: #0f3460;
+
+:host {
+  display: block;
+  background-color: $background-color;
+  color: $text-color;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+.hoje-container {
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  h2 {
+    font-size: 2.5rem;
+    color: $title-color;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto; // Mantém a proporção da imagem
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid $border-color;
+  }
+
+  .explanation {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+    max-width: 800px; // Para melhor legibilidade
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; // Ocupa a maior parte da tela
+  font-size: 1.5rem;
+  color: $text-color;
+}

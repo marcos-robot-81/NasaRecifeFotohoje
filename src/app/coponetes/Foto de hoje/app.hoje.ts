@@ -1,13 +1,18 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { DadosService } from '../logica/logica';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage, NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'hoje',
     templateUrl: './app.hoje.html',
     styleUrl: './app.hoje.scss',
-    imports:[NgOptimizedImage]
+    imports:[NgOptimizedImage, NgIf]
 
 }) export class hoje {
-    dados = DadosService;
-}
+    dados = inject(DadosService);
+    url = '';
+
+   
+    
+};

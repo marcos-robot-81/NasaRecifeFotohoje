@@ -20,13 +20,20 @@ export class DadosService { // Nome de classe e serviço seguindo convenções
     // Variaveis
     public imagemDoDia: DadosImagem | null = null;
     public texto: string = ''; // Inicializado
+    
+
+
+    getUrlImagem(){
+        this.buscarFotoDoDia();
+        return this.imagemDoDia?.url;
+    }
 
     constructor() {
         this.buscarFotoDoDia();
     }
 
     // Métodos
-    public async buscarFotoDoDia() {
+    async buscarFotoDoDia() {
         const url = this.construirUrl();
         await this.chamarNasa(url);
     }
@@ -50,11 +57,13 @@ export class DadosService { // Nome de classe e serviço seguindo convenções
             const dados: DadosImagem = await resposta.json();
             this.imagemDoDia = dados;
             this.texto = dados.explanation; // Exemplo de como usar outros dados
+            this.teste();
         } catch (error) {
             console.error("Falha ao buscar dados da NASA:", error);
         }
     }
 
     private teste(){
+        console.log(this.imagemDoDia?.url);
     }
 }

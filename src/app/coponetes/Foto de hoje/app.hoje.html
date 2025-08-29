@@ -1,5 +1,25 @@
-<div>
-    <p>hoje</p>
-            <img *ngSrc="dados.imagemDoDia?.url;">
-
+<!-- Usar *ngIf para mostrar o conteúdo apenas quando os dados estiverem carregados -->
+<div *ngIf="dados.imagemDoDia; else loading" class="hoje-container">
+  <h2>{{ dados.imagemDoDia.title }}</h2>
+  
+  <!-- 
+    - Usar [ngSrc] para property binding.
+    - Usar um alt text descritivo para acessibilidade.
+    - Adicionar 'priority' para carregar a imagem principal mais rápido.
+  -->
+  <img 
+    [ngSrc]="dados.imagemDoDia.url" 
+    [alt]="dados.imagemDoDia.title"
+    width="800" 
+    height="600"
+    priority>
+ 
+  <p class="explanation">{{ dados.imagemDoDia.explanation }}</p>
 </div>
+ 
+<!-- Template para mostrar enquanto os dados carregam -->
+<ng-template #loading>
+  <div class="loading-container">
+    <p>Carregando a foto de hoje...</p>
+  </div>
+</ng-template>
