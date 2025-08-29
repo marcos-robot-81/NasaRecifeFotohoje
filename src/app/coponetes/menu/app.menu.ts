@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink], 
   templateUrl: './app.menu.html',
   styleUrls: ['./app.menu.scss']
 })

@@ -11,7 +11,7 @@ export interface DadosImagem { // Interface exportada e nome em PascalCase (conv
 }
 
 const urlNasaApi = "https://api.nasa.gov/planetary/apod";
-const apiKey =  "DEMO_KEY";
+const apiKey = 'X40aMYH63fccHQaGcdTaEsEVcFmi5oilveMk6nwq';// "DEMO_KEY";
 
 @Injectable({
     providedIn: 'root'
