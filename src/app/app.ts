@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { menu } from './coponetes/menu/app.menu'
+import { menu } from './coponetes/menu/app.menu';
+import { DadosService } from './coponetes/logica/logica';
+
 
 
 @Component({
@@ -10,5 +12,14 @@ import { menu } from './coponetes/menu/app.menu'
   styleUrl: './app.scss'
 })
 export class App {
+  imagems = inject(DadosService);
+
+  CaregaFoto(){
+    this.imagems.buscarFotoDoDia();
+  }
+
+
   protected readonly title = signal('foto');
+
+  
 }
