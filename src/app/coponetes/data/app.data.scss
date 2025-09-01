@@ -1,0 +1,118 @@
+// Variáveis de cor inspiradas no app.hoje.scss para consistência
+$text-color: rgb(240, 240, 240);
+$background-color: #1a1a2e;
+$title-color: #e94560;
+$border-color: #0f3460;
+$button-color: #16213e;
+$button-hover-color: #e94560;
+
+:host {
+  display: block;
+  background-color: $background-color;
+  color: $text-color;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+.data-container {
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    color: $title-color;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+
+  .date-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid $border-color;
+    background-color: $button-color;
+    color: $text-color;
+    font-size: 1rem;
+    font-family: inherit;
+
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+  }
+
+  .search-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: $button-color;
+    border: 2px solid $border-color;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: $button-hover-color;
+      color: $background-color;
+    }
+  }
+}
+
+.resultado-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  h2 {
+    font-size: 2.2rem;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid $border-color;
+  }
+
+  .explanation {
+    font-size: 1.1rem;
+    text-align: justify;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+}
+
+.loading-container, .error-container, .initial-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 40px;
+  font-size: 1.5rem;
+  color: $text-color;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.error-container {
+  color: $title-color;
+  border: 1px solid $title-color;
+}

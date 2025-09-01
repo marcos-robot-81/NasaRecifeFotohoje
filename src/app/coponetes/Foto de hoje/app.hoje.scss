@@ -45,7 +45,7 @@ $border-color: #0f3460;
   }
 }
 
-.loading-container {
+.loading-container, .error-container {
   display: flex;
   justify-content: center;
   align-items: center;

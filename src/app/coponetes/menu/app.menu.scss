@@ -1,46 +1,121 @@
-/* tema preto*/
-$TextBraco: rgb(255,255,255);
-$GroundBreto:(#001CF0);
-/*tema braco*/
-$GroundBraco: (#00F0DF);
-$textBreto:rgb(0,0,0);
+// Variáveis para um visual consistente e mobile-friendly
+$menu-button-color: #f0f0f0; // Cor do ícone do hamburguer
+$menu-overlay-bg: rgba(26, 26, 46, 0.97); // Fundo do overlay, usando a cor de fundo do app
+$menu-link-color: #e94560; // Cor dos links, usando a cor de título do app
+$menu-link-hover-color: #ffffff;
 
 .menu-container {
-  position: relative;
-  display: inline-block;
+  // Este container não precisa mais de estilos especiais
 }
 
+// Botão do menu (hamburguer)
 .menu-button {
-  background-color: #0b3d91; /* Um azul escuro, como o da NASA */
-  color: white;
-  padding: 12px;
-  font-size: 16px;
+  position: fixed; // Fixo na tela para estar sempre acessível
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  z-index: 1001; // Garante que o botão fique acima do overlay
+  transition: transform 0.3s ease;
+
+  .hamburger-box {
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+    
+    &, &::before, &::after {
+      width: 40px;
+      height: 4px;
+      background-color: $menu-button-color;
+      border-radius: 4px;
+      position: absolute;
+      transition-property: transform;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+    }
+
+    &::before, &::after {
+      content: "";
+      display: block;
+    }
+
+    &::before {
+      top: -10px;
+    }
+
+    &::after {
+      bottom: -10px;
+    }
+  }
+
+  // Animação para o 'X' quando o menu está ativo
+  &.is-active .hamburger-inner {
+    transform: rotate(45deg);
+    &::before {
+      top: 0;
+      transform: rotate(-90deg);
+    }
+    &::after {
+      bottom: 0;
+      transform: rotate(-90deg);
+    }
+  }
 }
 
-.menu-button:hover, .menu-button:focus {
-  background-color: #1153c2;
+// Overlay que cobre a tela inteira
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $menu-overlay-bg;
+  z-index: 1000; // Abaixo do botão, mas acima de todo o resto
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  // Animação de fade-in
+  animation: fadeIn 0.3s ease-in-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Lista de links do menu
 .menu-list {
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
   list-style: none;
   padding: 0;
-  margin: 5px 0 0 0;
-  border-radius: 4px;
-}
+  margin: 0;
+  text-align: center;
 
-.menu-list li a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+  li {
+    margin: 20px 0;
+  }
 
-.menu-list li a:hover {background-color: #ddd;}
+  a {
+    color: $menu-link-color;
+    text-decoration: none;
+    font-size: 2.2rem; // Tamanho grande para fácil toque
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+
+    &:hover, &:focus {
+      color: $menu-link-hover-color;
+    }
+  }
+}

@@ -1,11 +1,18 @@
 <div class="menu-container">
-  <button class="menu-button" (click)="toggleMenu()">
-    |||
+  <!-- Botão Hamburguer -->
+  <button class="menu-button" (click)="toggleMenu()" [class.is-active]="isMenuOpen" aria-label="Toggle menu" [attr.aria-expanded]="isMenuOpen">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
   </button>
-  <ul class="menu-list" *ngIf="isMenuOpen">
-    <li><a href="#" routerLink="hoje">Foto de hoje</a></li>
-    <li><a href="#" routerLink="somos" >Quem somos</a></li>
-    <li><a href="#">Foto por data</a></li>
-    <li><a href="#">Idioma</a></li>
-  </ul>
+
+  <!-- Menu em Overlay -->
+  <div class="menu-overlay" *ngIf="isMenuOpen">
+    <ul class="menu-list">
+      <li><a routerLink="hoje" (click)="closeMenu()">Foto de hoje</a></li>
+      <li><a routerLink="data" (click)="closeMenu()">Foto por data</a></li>
+      <li><a routerLink="somos" (click)="closeMenu()">Quem somos</a></li>
+      <li><a routerLink="idioma" (click)="closeMenu()">Idioma</a></li>
+    </ul>
+  </div>
 </div>

@@ -1,0 +1,47 @@
+<div class="data-container">
+  <h2>Buscar Foto por Data</h2>
+  <p>Selecione uma data entre {{ minDate }} e hoje para ver a foto do dia da NASA.</p>
+  
+  <div class="form-container">
+    <input 
+      type="date" 
+      #dateInput 
+      [min]="minDate"
+      [max]="hoje"
+      [value]="hoje"
+      class="date-input">
+    <button (click)="buscarFoto(dateInput.value)" class="search-button">Buscar</button>
+  </div>
+
+  <!-- Usamos o async pipe para nos inscrevermos no observable imagemPorData$ -->
+  <div *ngIf="imagemPorData$ | async as state">
+    <!-- Estado de Carregamento -->
+    <div *ngIf="state.carregando" class="loading-container">
+      <p>Carregando a foto...</p>
+    </div>
+
+    <!-- Estado de Erro -->
+    <div *ngIf="state.erro" class="error-container">
+      <p>Não foi possível carregar a imagem para a data selecionada. Por favor, tente outra data.</p>
+    </div>
+
+    <!-- Estado com Dados -->
+    <div *ngIf="state.dados" class="resultado-container">
+      <h2>{{ state.dados.title }}</h2>
+      
+      <img 
+        [ngSrc]="state.dados.url" 
+        [alt]="state.dados.title"
+        width="800" 
+        height="600"
+        priority>
+    
+      <p class="explanation">{{ state.dados.explanation }}</p>
+    </div>
+
+    <!-- Mensagem inicial ou quando não há dados -->
+    <div *ngIf="!state.dados && !state.carregando && !state.erro" class="initial-message">
+      <p>Selecione uma data e clique em "Buscar".</p>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,28 @@
-<!-- Usar *ngIf para mostrar o conteúdo apenas quando os dados estiverem carregados -->
-<div *ngIf="dados.imagemDoDia; else loading" class="hoje-container">
-  <h2>{{ dados.imagemDoDia.title }}</h2>
+<!-- 
+  Usa o pipe 'async' para se inscrever no Observable 'imagemDoDia$'
+  e obter os dados. O *ngIf também cria uma variável local 'imagem'
+  com o resultado do observable.
+-->
+<div *ngIf="imagemDoDia$ | async as imagem; else loading">
+  <!-- Se a busca retornou uma imagem, mostra o resultado -->
+  <div *ngIf="imagem; else erro" class="hoje-container">
+    <h2>{{ imagem.title }}</h2>
+    
+    <img 
+      [ngSrc]="imagem.url" 
+      [alt]="imagem.title"
+      width="800" 
+      height="600"
+      priority>
   
-  <!-- 
-    - Usar [ngSrc] para property binding.
-    - Usar um alt text descritivo para acessibilidade.
-    - Adicionar 'priority' para carregar a imagem principal mais rápido.
-  -->
-  <img 
-    [ngSrc]="dados.imagemDoDia.url" 
-    [alt]="dados.imagemDoDia.title"
-    width="800" 
-    height="600"
-    priority>
- 
-  <p class="explanation">{{ dados.imagemDoDia.explanation }}</p>
+    <p class="explanation">{{ imagem.explanation }}</p>
+  </div>
+  <!-- Se a busca retornou null (erro), mostra mensagem de erro -->
+  <ng-template #erro>
+    <div class="error-container">
+      <p>Não foi possível carregar a imagem de hoje. Por favor, tente novamente mais tarde.</p>
+    </div>
+  </ng-template>
 </div>
  
 <!-- Template para mostrar enquanto os dados carregam -->
